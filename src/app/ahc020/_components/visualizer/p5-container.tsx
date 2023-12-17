@@ -1,10 +1,8 @@
-'use client'
-
-import {ParsedInput, ParsedOutput} from "@/app/ahc020/_components/type";
-import {SketchComponent} from "@/libs/components/sketch-components";
 import p5Types from "p5";
 import {OutputUtil} from "@/app/ahc020/_components/logic/output-util";
-
+import {ParsedInput, ParsedOutput} from "@/app/ahc020/_components/type";
+import {SketchComponent} from "@/libs/components/sketch-components";
+import React from "react";
 
 type Props = {
   input: ParsedInput,
@@ -13,14 +11,15 @@ type Props = {
 
 const width = 1000;
 
+export const P5Container: React.FC<Props> = ({input, output}) => {
 
-export const Visualizer: React.FC<Props> = ({input, output}: Props) => {
 
   const setUp = (p5: p5Types, canvasParentRef: Element) => {
-    p5.createCanvas(width, width).parent(canvasParentRef);
-
+    p5.createCanvas(width, width, 'p2d').parent(canvasParentRef);
     p5.background(100);
-    p5.frameRate(1)
+    p5.frameRate(20)
+
+    p5.noLoop()
   };
 
 
@@ -96,8 +95,6 @@ export const Visualizer: React.FC<Props> = ({input, output}: Props) => {
           const u = input.XYList[U]
           const v = input.XYList[V]
           p5.line(u.X, u.Y, v.X, v.Y)
-
-
         }
 
       }
@@ -107,23 +104,10 @@ export const Visualizer: React.FC<Props> = ({input, output}: Props) => {
 
   };
 
+
   return (
     <>
-      <>
-        N: {input.N},
-        M: {input.M},
-        K: {input.K},
-      </>
-
-      <>
-        <SketchComponent setup={setUp} draw={draw}/>
-      </>
-
+      <SketchComponent setup={setUp} draw={draw}/>
     </>
   )
 }
-
-
-
-
-

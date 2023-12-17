@@ -26,8 +26,8 @@ export const parseInputValue = (inputValue: string): ParsedInput => {
     .map(x => {
       // 後処理で扱いやすいように0-indexedにする
       return {
-        U: x[0]-1,
-        V: x[1]-1,
+        U: x[0] - 1,
+        V: x[1] - 1,
         W: x[2]
       }
     })
