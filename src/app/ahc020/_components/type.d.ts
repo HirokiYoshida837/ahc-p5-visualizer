@@ -7,4 +7,10 @@ export type ParsedInput = {
   ABList: { A: number, B: number }[]
 }
 
+export type ParsedOutput = {
+  PList: number[]
+  BList: number[]
+}
+
+expor
 
