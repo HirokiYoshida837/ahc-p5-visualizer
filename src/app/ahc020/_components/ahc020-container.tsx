@@ -1,35 +1,29 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useState} from "react";
 import {AHC020Input} from "@/app/ahc020/_components/input";
+import {ParsedInput} from "@/app/ahc020/type";
+import {VisualizeInput} from "@/app/ahc020/_components/visualize-input";
 
 export const AHC020Container: React.FC = () => {
 
-  const [rootValue, setRootValue] = useState<string>('')
-  useEffect(() => {
-    const pv = parseValue(rootValue)
-  }, [rootValue])
+  const [parsedInput, setParsedInput] = useState<ParsedInput>(InitialParsedInput);
+  const inputHandler = useCallback((value: string) => {
+    const parsedInput1 = parseValue(value);
+    setParsedInput(parsedInput1)
+  }, [])
 
   return (
     <>
       <AHC020Input
-        inputValueHandler={(string) => {
-          setRootValue(string)
-        }}
+        inputValueHandler={inputHandler}
       />
 
+      <VisualizeInput input={parsedInput}/>
     </>
   )
 }
 
-type ParsedInput = {
-  N: number,
-  M: number,
-  K: number,
-  XYList: { X: number, Y: number }[],
-  UVWList: { U: number, V: number, W: number }[],
-  ABList: { A: number, B: number }[]
-}
 
-
+// TODO : LINQ使いたい。
 const parseValue = (inputValue: string): ParsedInput => {
 
   const read = inputValue.split(/\r\n|\n/);
@@ -72,5 +66,8 @@ const parseValue = (inputValue: string): ParsedInput => {
     UVWList,
     ABList
   }
+}
 
+const InitialParsedInput: ParsedInput = {
+  ABList: [], K: 0, M: 0, N: 0, UVWList: [], XYList: []
 }
