@@ -20,7 +20,9 @@ export const AHC020Output: React.FC<Props> = (props) => {
           label="Output"
           placeholder="Output"
           autoHeight={false}
-          onChange={(value)=>{setInputValue(value)}}
+          onChange={(value) => {
+            setInputValue(value)
+          }}
         />
         <br/>
 
@@ -39,5 +41,5 @@ export const AHC020Output: React.FC<Props> = (props) => {
 const Container = styled.div`
   text-align: center;
   margin: 1rem;
-  width: 600px;
+  width: 800px;
 `;
