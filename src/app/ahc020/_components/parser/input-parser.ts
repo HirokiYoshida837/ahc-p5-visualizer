@@ -24,9 +24,10 @@ export const parseInputValue = (inputValue: string): ParsedInput => {
   const UVWList = read.slice(1 + N, 1 + N + M)
     .map(x => x.split(' ').map(y => Number(y)))
     .map(x => {
+      // 後処理で扱いやすいように0-indexedにする
       return {
-        U: x[0],
-        V: x[1],
+        U: x[0]-1,
+        V: x[1]-1,
         W: x[2]
       }
     })
