@@ -18,8 +18,6 @@ export const P5Container: React.FC<Props> = ({input, output}) => {
     p5.createCanvas(width, width, 'p2d').parent(canvasParentRef);
     p5.background(100);
     p5.frameRate(20)
-
-    p5.noLoop()
   };
 
 
