@@ -1,20 +1,12 @@
 'use client'
 
-import dynamic from 'next/dynamic'
+import {NextReactP5Wrapper} from '@p5-wrapper/next';
 import React from "react";
-import {SketchProps} from 'react-p5';
+import {P5WrapperPropsWithSketch} from "@p5-wrapper/react/dist/component/contracts/P5WrapperPropsWithSketch";
 
-// dynamic import しないと、 build時に window is not defined でエラー発生する
-// Will only import `react-p5` on client-side
-// https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading
-const Sketch: React.ComponentType<SketchProps> = dynamic(() => import('react-p5').then((mod) => mod.default), {
-    loading: () => <>loading...</>,
-    ssr: false,
-})
+export const SketchComponent: React.FC<P5WrapperPropsWithSketch> = (props: P5WrapperPropsWithSketch) => {
 
-
-export const SketchComponent: React.FC<SketchProps> = (props: SketchProps) => {
-    return (
-        <Sketch {...props} />
-    )
+  return (
+    <NextReactP5Wrapper sketch={props.sketch}/>
+  )
 }
