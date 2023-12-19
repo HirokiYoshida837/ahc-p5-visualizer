@@ -23,7 +23,6 @@ export const AHC020Container: React.FC = () => {
         inputValueHandler={(value) => setRawOutput(value)}
       />
 
-
       <VisualizeContainer
         input={input}
         output={output}
