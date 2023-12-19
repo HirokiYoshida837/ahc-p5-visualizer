@@ -17,7 +17,6 @@ export const VisualizeContainer: React.FC<Props> = ({input, output}: Props) => {
     setAge(Number(v));
   };
 
-
   return (
     <>
       <>
